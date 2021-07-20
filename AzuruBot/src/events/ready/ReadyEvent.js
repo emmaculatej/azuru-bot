@@ -12,22 +12,22 @@ module.exports = class ReadyEvent extends BaseEvent {
 
     let scheduledGoodMorningMessage = new cron.schedule('00 09 * * * *', () => {
       // Specifing your guild (server) and your channel
-        const guild = client.guilds.cache.get('808039105010991165');
+        const guild = client.guilds.cache.get('612030951219920898');
          const regularSpot = guild.channels.cache.get('612030951219920902');
          regularSpot.send('!goodMorning');
         });
     
     let scheduledDadJokeMessage = new cron.schedule('00 13 * * * *', () => {
       // Specifing your guild (server) and your channel
-          const guild = client.guilds.cache.get('808039105010991165');
+          const guild = client.guilds.cache.get('612030951219920898');
           const comedyCentral = guild.channels.cache.get('702122690999222373');
           comedyCentral.send('!dadJoke');
         });
       
-    let scheduledMotivationalMessage = new cron.schedule('30 12 * * * *', () => {
+    let scheduledMotivationalMessage = new cron.schedule('35 12 * * * *', () => {
       // Specifing your guild (server) and your channel
-         const guild = client.guilds.cache.get('808039105010991165');
-         const motivationalChannel = guild.channels.cache.get('808039105547599944');
+         const guild = client.guilds.cache.get('612030951219920898');
+         const motivationalChannel = guild.channels.cache.get('701103240204255272');
          motivationalChannel.send('!motivationalQuote');
         });
             
