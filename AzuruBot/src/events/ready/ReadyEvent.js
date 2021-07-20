@@ -1,7 +1,6 @@
 const BaseEvent = require('../../utils/structures/BaseEvent');
 const cron = require('node-cron');
 const { Message } = require('discord.js');
-const TestCommand = require('../../commands/test/testCommand');
 
 module.exports = class ReadyEvent extends BaseEvent {
   constructor() {
