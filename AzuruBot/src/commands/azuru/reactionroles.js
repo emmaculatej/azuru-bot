@@ -10,19 +10,24 @@ module.exports = class ReactionRolesCommand extends BaseCommand {
   {
     const channel = '834173050698203187';
     const movie = message.guild.roles.cache.find(role => role.name === "Movies");
+    const linguist = message.guild.roles.cache.find(role => role.name === "Linguists");
+
     //const blue = message.guild.roles.cache.find(role => role.name === "Blue");
 
     const movieEmoji = '🎥';
+    const linguistEmoji = '🦉';
     //const blueEmoji = '💙';
 
     const reactionRolesEmbedded = new MessageEmbed()
     .setTitle('Choose a role!')
     .setDescription('Choosing a role will allow you to get notifications and access to different parts of the discord!\n'
-    + `${movieEmoji} for the Movie role`
+    + `${movieEmoji} for the Movie role \n`
+    + `${linguistEmoji} for the Linguist role`
     );
 
     let messageEmbed = await message.channel.send(reactionRolesEmbedded);
     messageEmbed.react(movieEmoji);
+    messageEmbed.react(linguistEmoji);
     //messageEmbed.react(blueEmoji);
 
     client.on('messageReactionAdd', async(reaction,user) => {
@@ -42,6 +47,9 @@ module.exports = class ReactionRolesCommand extends BaseCommand {
       if(reaction.message.channel.id == channel){
         if(reaction.emoji.name === movieEmoji){
           await reaction.message.guild.members.cache.get(user.id).roles.add(movie);
+        }
+        else if(reaction.emoji.name === linguistEmoji){
+          await reaction.message.guild.members.cache.get(user.id).roles.add(linguist);
         }
         // if(reaction.emoji.name === blueEmoji){
         //   await reaction.message.guild.members.cache.get(user.id).roles.add(blue);
@@ -69,6 +77,9 @@ module.exports = class ReactionRolesCommand extends BaseCommand {
       if(reaction.message.channel.id == channel){
         if(reaction.emoji.name === movieEmoji){
           await reaction.message.guild.members.cache.get(user.id).roles.remove(movie);
+        }
+        else if(reaction.emoji.name === linguistEmoji){
+          await reaction.message.guild.members.cache.get(user.id).roles.remove(linguist);
         }
         // if(reaction.emoji.name === blueEmoji){
         //   await reaction.message.guild.members.cache.get(user.id).roles.remove(blue);
