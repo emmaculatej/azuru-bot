@@ -1,10 +1,10 @@
-const { DiscordAPIError, MessageEmbed, MessageAttachment, Message, User } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 const BaseCommand = require('../../utils/structures/BaseCommand');
 
 module.exports = class HypemanCommand extends BaseCommand {
   constructor() {
     super('hypeman', 'random', []);
-    
+
   }
 
  getRandomInt(min, max) {
@@ -13,11 +13,11 @@ module.exports = class HypemanCommand extends BaseCommand {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-  async run(client, message, args) 
+  async run(client, message, args)
   {
     const hypeman = new MessageEmbed()
     var choice = this.getRandomInt(1,2);
-    if(choice == 1)
+    if(choice === 1)
     {
       const attachment = new MessageAttachment('./AzuruBot/src/images/hypeman.gif', 'hypeman.gif');
       hypeman
@@ -25,8 +25,8 @@ module.exports = class HypemanCommand extends BaseCommand {
       .setDescription('LET\'S GO!! \n You freaking killed it - we are so proud of you!!!!')
       .attachFiles(attachment)
       .setImage('attachment://hypeman.gif');
-  
-      message.channel.send(hypeman);
+
+      return message.channel.send(hypeman);
     }
     else{
       const attachment = new MessageAttachment('./AzuruBot/src/images/hypeman2.gif', 'hypeman2.gif');
@@ -36,8 +36,8 @@ module.exports = class HypemanCommand extends BaseCommand {
       .attachFiles(attachment)
       .setImage('attachment://hypeman2.gif');
 
-    message.channel.send(hypeman);
+      return message.channel.send(hypeman);
     }
-    
+
   }
 }
