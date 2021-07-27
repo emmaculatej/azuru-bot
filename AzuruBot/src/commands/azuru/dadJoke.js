@@ -11,10 +11,10 @@ module.exports = class DadJokeCommand extends BaseCommand {
   async run(client, message, args)
   {
     try {
-      const response = this.dadJokeApi.GET();
+      const response = await this.dadJokeApi.GET();
       const jokeResult = response.data;
       message.channel.send(jokeResult.joke);
-    } catch (e) {
+    } catch (error) {
       console.log(error);
       message.channel.send('The request could not be registered. Please try again.')
     }
