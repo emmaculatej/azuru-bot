@@ -9,7 +9,7 @@ class dadJokeAPI extends baseAPI{
             headers: {
                 'Accept': 'application/json',
                 'Content-Type' : 'application/json',
-                'User-Agent': 'ReashyBot (webmaster@reashetyr.software)'
+                'User-Agent': 'AzuruBot (https://github.com/emmaculate/azuru-bot)'
             }
         })
     }
