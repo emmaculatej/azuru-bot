@@ -1,39 +1,22 @@
-const { DiscordAPIError, MessageEmbed, MessageAttachment, Message, User } = require('discord.js');
 const BaseCommand = require('../../utils/structures/BaseCommand');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-const axios = require('axios');
+const dadJokeAPI = require('../../classes/dadJokeAPI.js');
 
 
 module.exports = class DadJokeCommand extends BaseCommand {
   constructor() {
     super('dadjoke', 'random', []);
+    this.dadJokeApi = new dadJokeAPI();
   }
 
-  async run(client, message, args) 
+  async run(client, message, args)
   {
-
-
-  axios({url:'https://icanhazdadjoke.com/', 
-  method: 'get',
-  headers: 
-    {
-      'Accept': 'application/json',
-      'Content-Type' : 'application/json',
-     'User-Agent': 'AzuruBot (https://github.com/emmaculate/azuru-bot)'
-    },
-    data : 
-    {
-      id: '',
-      joke: ''
+    try {
+      const response = this.dadJokeApi.GET();
+      const jokeResult = response.data;
+      message.channel.send(jokeResult.joke);
+    } catch (e) {
+      console.log(error);
+      message.channel.send('The request could not be registered. Please try again.')
     }
-  })
-  .then(response => {
-    var jokeResult = response.data;
-    message.channel.send(jokeResult.joke);
-  })
-  .catch(error => {
-    console.log(error);
-    message.channel.send('The request could not be registered. Please try again.');
-  });  
   }
 }
