@@ -11,12 +11,12 @@ const channel = '808039105547599944';
 (async () => {
   client.commands = new Map();
   client.events = new Map();
-  //client.prefix = process.env.PREFIX;
-  client.prefix = config.prefix;
+  client.prefix = process.env.PREFIX;
+  //client.prefix = config.prefix;
   await registerCommands(client, '../commands');
   await registerEvents(client, '../events');
-  //await client.login(process.env.CLIENT_TOKEN);
-  await client.login(config.token)
+  await client.login(process.env.CLIENT_TOKEN);
+  //await client.login(config.token)
 
   app = express();
   app.listen(3000);
