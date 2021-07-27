@@ -1,6 +1,5 @@
-const { DiscordAPIError, MessageEmbed, MessageAttachment, Message, User } = require('discord.js');
+const {  MessageEmbed } = require('discord.js');
 const BaseCommand = require('../../utils/structures/BaseCommand');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const axios = require('axios');
 
 
@@ -9,37 +8,33 @@ module.exports = class MotivationalQuoteCommand extends BaseCommand {
     super('motivationalQuote', 'random', ["mq"]);
   }
 
-  async run(client, message, args) 
+  async run(client, message, args)
   {
 
 
-  axios({url:'https://zenquotes.io/api/random', 
+  const response = await axios({url:'https://zenquotes.io/api/random',
   method: 'get',
-  headers: 
+  headers:
     {
       'Accept': 'application/json',
       'Content-Type' : 'application/json',
       'User-Agent': 'AzuruBot (https://github.com/emmaculate/azuru-bot)'
     },
-    data : 
+    data :
     {
       q: '',
       a: '',
       h: ''
     }
-  })
-  .then(response => {
-    
-    var result = response.data[0];
-    const danceEmbedded = new MessageEmbed()
-    .setTitle("Daily Motivation")
-    .setDescription(`${result.q} \n by ${result.a}`);
-
-    message.channel.send(danceEmbedded);
-  })
-  .catch(error => {
+  }).catch(error => {
     console.log(error);
-    message.channel.send('The request could not be registered. Please try again.');
-  });  
+    return message.channel.send('The request could not be registered. Please try again.');
+  });
+  const result = response.data[0];
+  const danceEmbedded = new MessageEmbed()
+      .setTitle("Daily Motivation")
+      .setDescription(`${result.q} \n by ${result.a}`);
+
+  return message.channel.send(danceEmbedded);
   }
 }
