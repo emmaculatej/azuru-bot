@@ -1,4 +1,4 @@
-const { DiscordAPIError, MessageEmbed, MessageAttachment, Message, User } = require('discord.js');
+const { MessageEmbed, MessageAttachment } = require('discord.js');
 const BaseCommand = require('../../utils/structures/BaseCommand');
 
 module.exports = class PraiseTheEmmaCommand extends BaseCommand {
@@ -6,7 +6,7 @@ module.exports = class PraiseTheEmmaCommand extends BaseCommand {
     super('praisetheemma', 'random', []);
   }
 
-  async run(client, message, args) 
+  async run(client, message, args)
   {
     const attachment = new MessageAttachment('./AzuruBot/src/images/jokerAllOut.gif', 'jokerAllOut.gif');
     const praiseEmmaEmbedded = new MessageEmbed()
@@ -14,6 +14,6 @@ module.exports = class PraiseTheEmmaCommand extends BaseCommand {
     .attachFiles(attachment)
     .setImage('attachment://jokerAllOut.gif');
 
-    message.channel.send(praiseEmmaEmbedded);
+    return message.channel.send(praiseEmmaEmbedded);
   }
 }
