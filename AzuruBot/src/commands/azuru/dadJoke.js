@@ -4,7 +4,7 @@ const dadJokeAPI = require('../../classes/dadJokeAPI.js');
 
 module.exports = class DadJokeCommand extends BaseCommand {
   constructor() {
-    super('dadjoke', 'random', []);
+    super('dadjoke', 'schedule', []);
     this.dadJokeApi = new dadJokeAPI();
   }
 

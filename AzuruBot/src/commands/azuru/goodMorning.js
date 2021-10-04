@@ -3,7 +3,7 @@ const BaseCommand = require('../../utils/structures/BaseCommand');
 
 module.exports = class GoodMorningCommand extends BaseCommand {
   constructor() {
-    super('goodmorning', 'random', ["gm", "goodMorning"]);
+    super('goodmorning', 'schedule', ["gm", "goodMorning"]);
   }
 
   async run(client, message, args)
